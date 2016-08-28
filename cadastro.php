@@ -24,7 +24,7 @@
 	$user   = $_POST['username'];
 	$pass 	= $_POST["password"];
 
-	$result = mysqli_query($connection, "SELECT id FROM users WHERE user=".$user.";");
+	$result = mysqli_query($connection, "SELECT id FROM users WHERE user=\"".$user."\";");
 	
 
 	if (mysqli_num_rows($result) == 1)
@@ -34,7 +34,7 @@
 	} else {
 		$salt = generateRandomString();
 		$pass_hash = sha1($salt.$pass);
-		$result = mysqli_query($connection, "INSERT INTO users (name,password,salt) VALUES (".$user.",".$pass_hash.",".$salt.");");
+		$result = mysqli_query($connection, "INSERT INTO users (name,password,salt) VALUES (\"".$user."\",\"".$pass_hash."\",\"".$salt."\"");");
 		if ($result)
 		{
 		mysql_close($connection);
