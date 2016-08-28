@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<head>
+  
 <title>Gerenciamento</title>
 <meta charset="utf8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +10,56 @@
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="summary.js"></script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawTrendlines);
+
+function drawTrendlines() {
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Ganhos');
+      data.addColumn('number', '');
+
+      data.addRows([
+        [{v: [8, 0, 0], f: '8 am'}, 1, .25],
+        [{v: [9, 0, 0], f: '9 am'}, 2, .5],
+        [{v: [10, 0, 0], f:'10 am'}, 3, 1],
+        [{v: [11, 0, 0], f: '11 am'}, 4, 2.25],
+        [{v: [12, 0, 0], f: '12 pm'}, 5, 2.25],
+        [{v: [13, 0, 0], f: '1 pm'}, 6, 3],
+        [{v: [14, 0, 0], f: '2 pm'}, 7, 4],
+        [{v: [15, 0, 0], f: '3 pm'}, 8, 5.25],
+        [{v: [16, 0, 0], f: '4 pm'}, 9, 7.5],
+        [{v: [17, 0, 0], f: '5 pm'}, 10, 10],
+      ]);
+
+      var options = {
+        title: '',
+        trendlines: {
+          0: {type: 'linear', lineWidth: 5, opacity: .3},
+          1: {type: 'exponential', lineWidth: 10, opacity: .3}
+        },
+        hAxis: {
+          title: 'Time of Day',
+          format: 'h:mm a',
+          viewWindow: {
+            min: [7, 30, 0],
+            max: [17, 30, 0]
+          }
+        },
+        vAxis: {
+          title: 'R$ (reais)'
+        }
+      };
+
+      var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+      chart.draw(data, options);
+    }
+</script>
+
+
+</head>
 <style>
 * {box-sizing:border-box;}
 ul {list-style-type: none;}
@@ -245,18 +297,18 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
         <h5>Resumo do Dia</h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
-            <td><img src="https://support.content.office.net/pt-br/media/20a22ea5-02ed-4f72-97cd-f3f2ab6c7fb0.gif"/>
+            <div id="chart_div"></div>
           </td>
           </tr>
           <tr style="color:red" >
             <td><i class="fa fa-dollar fa-fw"></i></td>
             <td><b>Gasto do Dia:</b></td>
-            <td>R$100.000,00</td>
+            <td id="gasto"></td>
           </tr>
-          <tr style="color:green">
+          <tr style="color:blue">
             <td><i class="fa fa-money fa-fw"></i></td>
             <td><b>Ganhos do Dia:</b></td>
-            <td>R$100.000,00</td>
+            <td id="ganho"></td>
           </tr>
           <tr>
             
@@ -269,81 +321,26 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
 
   <div class="w3-container">
     <h5>Últimas 10 entradas</h5>
+<<<<<<< HEAD
       <a href=""><button class="w3-btn" style="background-color: #cc0000;float: right; margin-bottom: 10px"><b>Adicionar Gasto</b>  <i class="fa fa-plus"></i></button></a>
       
 
-      <a href=""><button class="w3-btn" style="background-color: #009900;float: right;margin-bottom: 10px"><b>Adicionar Ganho</b>  <i class="fa fa-plus"></i></button></a>
+      <a href=""><button class="w3-btn" style="background-color: blue;float: right;margin-bottom: 10px"><b>Adicionar Ganho</b>  <i class="fa fa-plus"></i></button></a>
   <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+=======
+      <button id="add+" class="w3-btn" style="background-color: #cc0000;float: right; margin-bottom: 10px"><b>Adicionar Gasto</b>  <i class="fa fa-plus"></i></button>
+      <button id="add-" class="w3-btn" style="background-color: #009900;float: right;margin-bottom: 10px"><b>Adicionar Ganho</b>  <i class="fa fa-plus"></i></button>
+  <table id="last_table" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+>>>>>>> a98a79ab90844de8f18d81890ddc3a180a982fea
   <tr style="background-color: purple; color: white">
     <td><b>Nome</b></td>
     <td><b>Categoria</b></td>
     <td><b>Data</b></td>
     <td><b>Valor</b></td>
   </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-
 </table><br>
   <a href="gas.html"><button class="w3-btn" style="background-color: #cc0000;float: right; margin-bottom: 10px"><b>Mais Gastos</b>  <i class="fa fa-plus"></i></button></a>
-  <a href="gan.html"><button class="w3-btn" style="background-color: #009900;float: right;margin-bottom: 10px"><b>Mais Ganhos</b>  <i class="fa fa-plus"></i></button></a>
+  <a href="gan.html"><button class="w3-btn" style="background-color: blue;float: right;margin-bottom: 10px"><b>Mais Ganhos</b>  <i class="fa fa-plus"></i></button></a>
   </div>
   <hr>
 
