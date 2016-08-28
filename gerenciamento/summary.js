@@ -116,7 +116,7 @@ function update_summary (day, mon, year) {
 		var_node = "<tr><td>"+vec[t]["name"]+
 			"</td><td>"+vec[t]["class"]+
 			"</td><td>"+(new Date(vec[t]["date"])).toLocaleString()+
-			"</td><td>"+vec[t]["value"]+"</td></tr>";
+			"</td><td>R$ "+vec[t]["value"]+"</td></tr>";
 		final_string+=var_node;
 	}
 

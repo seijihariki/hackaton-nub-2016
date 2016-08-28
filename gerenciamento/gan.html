@@ -6,6 +6,8 @@
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="gan.js"></script>>
 <style>
 * {box-sizing:border-box;}
 ul {list-style-type: none;}
@@ -17,14 +19,14 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
 <!-- Top container -->
 <div class="w3-container w3-top w3-black w3-large w3-padding" style="z-index:4">
   <button class="w3-btn w3-hide-large w3-padding-0 w3-hover-text-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
-  <span class="w3-right">Olá, Mike</span>
+  <span class="w3-right">Olá, <div class="username">Mike</div></span>
 </div>
 
 <!-- Sidenav/menu -->
 <nav class="w3-sidenav w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidenav"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s8">
-      <span>Bem-vindo, <strong>Mike</strong></span><br>
+      <span>Bem-vindo, <strong><div class="username">Mike</div></strong></span><br>
     </div>
   </div>
   <hr>
@@ -59,74 +61,13 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
   <a href=""><button class="w3-btn" style="float: right; margin-bottom: 10px"><b>Adicionar Ganho</b>  <i class="fa fa-plus"></i></button></a>
   </div>
   <hr>
-  <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+  <table id="last_table" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
   <tr style="background-color: blue; color: white">
     <td><b>Nome</b></td>
     <td><b>Categoria</b></td>
     <td><b>Data</b></td>
     <td><b>Valor</b></td>
   </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-  <tr>
-    <td>Nome</td>
-    <td>Categoria</td>
-    <td>Data</td>
-    <td>Valor</td>
-  </tr>
-
 </table><br>
 </div>
 
