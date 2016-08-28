@@ -1,0 +1,44 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        	<meta name="viewport" content="width=device-width initial-scale=1.0 maximum-scale=1.0 user-scalable=no" />
+            <script 
+            src="https://code.jquery.com/jquery-3.1.0.min.js" 
+            integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s="
+            crossorigin="anonymous"></script>
+
+            <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+            <link   rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+            integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+            crossorigin="anonymous">
+
+            <link type="text/css" rel="stylesheet"
+            href="../jquery-plugins/mmenu/dist/css/jquery.mmenu.all.css" />
+			<script 
+			src="../jquery-plugins/mmenu/dist/js/jquery.mmenu.all.min.js"></script>
+
+			<script>
+				$(function() {
+					$('nav#menu').mmenu();
+				});
+			</script>
+    </head>
+
+    <body>
+    	<div id="content">
+	    	<a href="#menu"><div></div></a>
+	    	<nav id="menu">
+	    	<ul>
+	    		<li><a href="#">Voltar</a></li>
+	    	</ul>
+	    	</nav>
+    	</div>
+	</body>
+</html>
