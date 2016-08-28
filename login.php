@@ -27,7 +27,7 @@
 
 	$pass_hash = sha1($salt.$pass);
 
-	$result = mysqli_query($connection, "SELECT * FROM users WHERE user=\"".$user."\"" AND pass=\"".$pass_hash."\"");
+	$result = mysqli_query($connection, "SELECT * FROM users WHERE user=\"".$user."\" AND pass=\"".$pass_hash."\"");
 
 	if (mysqli_num_rows($result) == 1)
 	{
