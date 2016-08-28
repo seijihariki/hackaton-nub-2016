@@ -34,6 +34,7 @@ function select_calendar(day, mon, year){
 
 function print_money (eid, money) {
 	var mnstr = "";
+	
 
 
 	$("#"+eid).html("R$ "+mnstr);

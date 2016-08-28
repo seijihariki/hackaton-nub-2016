@@ -1,75 +1,20 @@
 <!DOCTYPE html>
-
-<head>
+<html>
+<title>Metas</title>
 <meta charset="utf8">
-
-<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script type="text/javascript">
-
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-    theme: "theme2",//theme1
-    title:{
-      text: "Basic Column Chart - CanvasJS"              
-    },
-    animationEnabled: false,   // change to true
-    data: [              
-    {
-      // Change type to "bar", "area", "spline", "pie",etc.
-      type: "column",
-      dataPoints: [
-        { label: "apple",  y: 10  },
-        { label: "orange", y: 15  },
-        { label: "banana", y: 25  },
-        { label: "mango",  y: 30  },
-        { label: "grape",  y: 28  }
-      ]
-    }
-    ]
-  });
-  chart.render();
-}
-</script>
-
-</head>
-<title>Estatisticas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-
-<script type="text/javascript">
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer",
-  {
-    title:{
-      text: "Pie Chart"
-    },
-    data: [
-    {
-      type: "pie",
-      dataPoints: [
-        { y: 4181563},
-        { y: 2175498},
-        { y: 3125844},
-        { y: 1176121},
-        { y: 1727161},
-        { y: 4303364},
-        { y: 1717786}
-      ]
-    }
-    ]
-  });
-  chart.render();
-}
-  </script>
-  <script src="../../canvasjs.min.js"></script>
-  <title>CanvasJS Example</title>
-
 <style>
-  html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+* {box-sizing:border-box;}
+ul {list-style-type: none;}
+body {font-family: Arial,sans-serif; font-color:black;}
+html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
 </style>
-<body>
+<body class="w3-light-grey">
+
+<!-- Top container -->
 <div class="w3-container w3-top w3-black w3-large w3-padding" style="z-index:4">
   <button class="w3-btn w3-hide-large w3-padding-0 w3-hover-text-grey" onclick="w3_open();"><i class="fa fa-bars"></i>  Menu</button>
   <span class="w3-right">Olá, Mike</span>
@@ -91,21 +36,101 @@ window.onload = function () {
   <a href="categorias.html" class="w3-padding"><i class="fa fa-book fa-fw"></i>  Categorias</a>
   <a href="gan.html" class="w3-padding"><i class="fa fa-money fa-fw"></i>  Ganhos</a>
   <a href="gas.html" class="w3-padding"><i class="fa fa-dollar fa-fw"></i>  Gastos</a>
-  <a href="metas.html" class="w3-padding"><i class="fa fa-edit fa-fw"></i>  Metas</a>
-  <a href="estatisticas.html" class="w3-padding w3-blue"><i class="fa fa-bar-chart fa-fw"></i>  Dados Estatísticos</a>
+  <a href="metas.html" class="w3-padding w3-blue"><i class="fa fa-edit fa-fw"></i>  Metas</a>
+  <a href="Estatisticos.html" class="w3-padding"><i class="fa fa-bar-chart fa-fw"></i>  Dados Estatísticos</a>
 </nav>
-
 <!-- Overlay effect when opening sidenav on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:50px;">
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-<!-- !<div id="chartContainer" style="height: 300px; width: 100%;"></div>! -->
-    
-<div id="chartContainer" style="height: 400px; width: 100%;"></div>!
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5></h5>
+  </header>
 
-<script>
+
+<div class="w3-container">
+  <div class="w3-container"style="background-color: #9900cc; color: white">
+  <h1 class="w3-jumbo"><b>Metas</b></h1><br>
+  <a href=""><button class="w3-btn" style="float: right; margin-bottom: 10px"><b>Adicionar Meta</b>  <i class="fa fa-plus"></i></button>
+
+  </div>
+  <hr>
+  <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+  <tr style="background-color: #9900cc; color: white">
+    <td><b>Nome</b></td>
+    <td><b>Categoria</b></td>
+    <td><b>Data</b></td>
+    <td><b>Valor</b></td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+  <tr>
+    <td>Nome</td>
+    <td>Categoria</td>
+    <td>Data</td>
+    <td>Valor</td>
+  </tr>
+
+</table><br>
+</div>
+
+
+  <script>
 // Get the Sidenav
 var mySidenav = document.getElementById("mySidenav");
 
@@ -130,5 +155,6 @@ function w3_close() {
 }
 </script>
 
+</div>
 </body>
 </html>
