@@ -1,14 +1,15 @@
 <?php
+	error_reporting(E_ERROR | E_PARSE);
 	$server = "mysql.hostinger.com.br";
 	$dbuser = "u658685063_adm";
 	$dbpass = "senhadb";
 	$dbname = "u658685063_users";
 
-	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
+	$connection = mysqli_connect($server, $dbuser, $dbpass, $database);
 
 	if (!$connection)
 	{
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 
 	$name	= $_POST["name"];
@@ -20,16 +21,16 @@
 
 	if (mysqli_num_rows($result) != 1)
 	{
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 	$row = $result->fetch_assoc();
 	$result1 = mysqli_query($connection, "INSERT INTO transactions (id, name, value, description, transaction_date) VALUES (".$_SESSION["userid"].",".$row["id"].",\"".$name."\",".$value.",\"".$desc."\", NOW());");
 
 	if ($result1)
 	{
-		exit("{status: OK;}");
+		exit("{\"status\": \"OK\"}");
 	} else {
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 
 

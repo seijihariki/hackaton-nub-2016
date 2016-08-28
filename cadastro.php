@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ERROR | E_PARSE);
 	$server = "mysql.hostinger.com.br";
 	$dbuser = "u658685063_adm";
 	$dbpass = "senhadb";
@@ -14,10 +15,10 @@
     return $randomString;
 	}	
 
-	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
+	$connection = mysqli_connect($server, $dbuser, $dbpass, $database);
 	
 	if (!$connection) {
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 
 	$user   = $_POST['username'];
@@ -34,6 +35,14 @@
 		$salt = generateRandomString();
 		$pass_hash = sha1($salt.$pass);
 		$result = mysqli_query($connection, "INSERT INTO users (name,password,salt) VALUES (".$user.",".$pass_hash.",".$salt.");");
+		if ($result)
+		{
+		mysql_close($connection);
+		exit("{\"status\": \"OK\"}");
+		} else {
+			mysql_close($connection);
+				die("{\"status\": \"error\"}");
+		}	
 	}
 
 
