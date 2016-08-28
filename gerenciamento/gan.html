@@ -112,15 +112,13 @@ function w3_close() {
       </div>
       <div class="modal-body">
           <form method="post" id="new_gasto" action="/gastos">
-    <p><label for="nome">Nome do Ganho: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" name="nome" id="nome" /></p>
-    <p><label for="nome">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="35" name="nome" id="nome" /></p>
-    <p><label for="nome">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="31.5" name="nome" id="nome" /></p>
-    <p><label for="nome">Data: </label> &nbsp; <input style="margin-right: 20px" type="text" size="30" name="nome" id="nome" /></p>
-    <p><label for="descricao">Descrição: </label> &nbsp; <input name="descricao" type="text" id="descricao" size="31.5"></p>
+    <p><label for="name">Nome do Ganho: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" id="name" /></p>
+    <p><label for="value">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="35" id="value" /></p>
+    <p><label for="class">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="31.5" id="class" /></p>
   </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
+        <button id="add" type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
     </div>

@@ -20,8 +20,8 @@
 function drawTrendlines() {
       var data = new google.visualization.DataTable();
       data.addColumn('timeofday', 'Time of Day');
-      data.addColumn('number', 'Ganhos');
-      data.addColumn('number', '');
+      data.addColumn('number', '+');
+      data.addColumn('number', '-');
 
       data.addRows([
         [{v: [8, 0, 0], f: '8 am'}, 1, .25],
@@ -234,7 +234,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
   <div class="w3-container w3-section">
     <div class="w3-row-padding" style="margin:0 -16px">
       <div class="w3-third">
-        <h5>Calendário</h5>
+        <h5 style="font-size: 24px">Calendário</h5>
 
 <div class="month">
   <ul>
@@ -297,7 +297,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
       </div>
 
       <div class="w3-twothird">
-        <h5>Resumo do Dia</h5>
+        <h5 style="font-size: 24px">Resumo do Dia</h5>
         <table class="w3-table w3-striped w3-white">
           <tr>
             <div id="chart_div"></div>
@@ -323,7 +323,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
   <hr>
 
   <div class="w3-container">
-    <h5>Últimas 10 entradas</h5>
+    <h5 style="font-size: 24px">Últimas 10 entradas</h5>
 
   <button type="button" class="w3-btn" data-toggle="modal" data-target="#myGasto" style="background-color: #cc0000; float: right; margin-bottom: 10px"><b>Adicionar Gasto</b> <i class="fa fa-plus"></i></button>
   <button type="button" class="w3-btn" data-toggle="modal" data-target="#myGanho" style="background-color: #0000cc; float: right;margin-bottom: 10px"><b>Adicionar Ganho</b> <i class="fa fa-plus"></i></button>
@@ -380,14 +380,13 @@ function w3_close() {
       </div>
       <div class="modal-body">
           <form method="post" id="new_gasto" action="/gastos">
-    <p><label for="nome">Nome do Gasto: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" name="nome" id="nome" /></p>
-    <p><label for="nome">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="36" name="nome" id="nome" /></p>
-    <p><label for="nome">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="32.5" name="nome" id="nome" /></p>
-    <p><label for="nome">Data: </label> &nbsp; <input style="margin-right: 20px" type="text" size="37" name="nome" id="nome" /></p>
+    <p><label for="namest">Nome do Gasto: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" id="namest" /></p>
+    <p><label for="valuest">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="35" id="valuest" /></p>
+    <p><label for="classst">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="31.5" id="classst" /></p>
   </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
+        <button id="addst" type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
@@ -406,14 +405,13 @@ function w3_close() {
       </div>
       <div class="modal-body">
           <form method="post" id="new_gasto" action="/gastos">
-    <p><label for="nome">Nome do Ganho: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" name="nome" id="nome" /></p>
-    <p><label for="nome">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="37" name="nome" id="nome" /></p>
-    <p><label for="nome">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="33" name="nome" id="nome" /></p>
-    <p><label for="nome">Data: </label> &nbsp; <input style="margin-right: 20px" type="text" size="38" name="nome" id="nome" /></p>
+    <p><label for="namegn">Nome do Ganho: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" id="namegn" /></p>
+    <p><label for="valuegn">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="35" id="valuegn" /></p>
+    <p><label for="classgn">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="31.5" id="classgn" /></p>
   </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
+        <button id="addgn" type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
       </div>
     </div>

@@ -47,7 +47,7 @@ function update_summary (day, mon, year) {
 
 	var totals = {};
 
-	var now = new Date();
+	var now = (new Date()).getTime();
 
 	for (var k in udb[user]["classes"]){
 		totals[udb[user]["classes"][k]] = 0;
@@ -164,8 +164,22 @@ $(document).ready( function () {
 		}
 	});
 
-	$("#add+").click( function (){
+	$("#addst").click( function () {
+		var user = localStorage.getItem("session");
+		$(".username").html(user);
+		var udb = JSON.parse(localStorage.getItem("users"));
+		udb[user]["transactions"].push({name: $("#namest").val(), value: -parseFloat(($("#valuest").val()).replace(",",".")), class: $("#classst"), date: (new Date()).getTime(), desc: null});
+		localStorage.setItem("users", JSON.stringify(udb));
+		update_summary(day, mon, year);
+	});
 
+	$("#addgn").click( function () {
+		var user = localStorage.getItem("session");
+		$(".username").html(user);
+		var udb = JSON.parse(localStorage.getItem("users"));
+		udb[user]["transactions"].push({name: $("#namegn").val(), value: parseFloat(($("#valuegn").val()).replace(",",".")), class: $("#classgn"), date: (new Date()).getTime(), desc: null});
+		localStorage.setItem("users", JSON.stringify(udb));
+		update_summary(day, mon, year);
 	});
 
 	update_summary(day, mon, year);

@@ -8,7 +8,7 @@ function update ()
 
 	var totals = {};
 
-	var now = new Date();
+	var now = (new Date()).getTime();
 
 	var vec = [];
 	var not = [];
@@ -20,7 +20,7 @@ function update ()
 			var name  = history[t]["name"];
 			var value = history[t]["value"];
 			var desc  = history[t]["desc"];
-			var date  = new Date(parseInt(history[t]["date"]));
+			var date  = parseInt(history[t]["date"]);
 			if (not.indexOf(name) && (tmp == null || tmp["date"] < date) && value < 0) tmp = history[t];
 
 		}
@@ -45,5 +45,13 @@ function update ()
 }
 
 $(document).ready( function () {
+	$("#add").click( function () {
+		var user = localStorage.getItem("session");
+		$(".username").html(user);
+		var udb = JSON.parse(localStorage.getItem("users"));
+		udb[user]["transactions"].push({name: $("#name").val(), value: -parseFloat(($("#value").val()).replace(",",".")), class: $("#class"), date: (new Date()).getTime(), desc: null});
+		localStorage.setItem("users", JSON.stringify(udb));
+		update();
+	});
 	update();
 });
