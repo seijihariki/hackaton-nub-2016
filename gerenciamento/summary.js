@@ -41,28 +41,17 @@ function print_money (eid, money) {
 }
 
 function update_summary (day, mon, year) {
-	$.post("summary_data.php",
-		{base_day: day, base_mon: mon, base_year: year, time_int: 1},
-		function (data) {
-			var parsed = JSON.parse(data);
-			var status = parsed["status"];
-			if (status == "OK"){
-				$(".username").html(parsed["user"]);
-				var	health = String(parsed["health"]);
-				var bills  = String(parsed["bills"]);
-				var food   = String(parsed["food"]);
-				var fun    = String(parsed["fun"]);
-				while (health.length < 3) health = '0' + health;
-				print_money("health_sum", health);
-				print_money("bills_sum", bills);
-				print_money("food_sum", food);
-				print_money("fun_sum", fun);
-			} else {
-				$("#alert").html(
-					"Não foi possível acessar os dados. Desculpe pelo incômodo. Tente novamente mais tarde.");
-			}
-		}
-	);
+	var user = localStorage.getItem("session");
+	$(".username").html(user);
+	var history = localStorage.getItem("users")[user]["transactions"];
+	var health = 0;
+	var bills  = 0;
+	var food   = 0;
+	var fun    = 0;
+
+	for (var t in history) {
+		
+	}
 }
 
 $(document).ready( function () {
@@ -95,5 +84,5 @@ $(document).ready( function () {
 		}
 	});
 
-	//update_summary(day, mon, year);
+	update_summary(day, mon, year);
 });

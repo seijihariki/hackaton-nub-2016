@@ -13,8 +13,7 @@ $(document).ready(function (){
 			if(userobj == null) userobj = JSON.parse("{}");
 
 			if(user in userobj && userobj[user]["password"] == pass){
-				if(rem == false) document.cookie = "session="+user;
-				else document.cookie = "session="+user+"expires=Mon,1 Aug 2100 12:00:00 UTC";
+				localStorage.setItem("session", user);
 				document.location.href = "gerenciamento/index.html";
 			} else {
 				$("#alert").html("Usuário ou senha inválidos.");
