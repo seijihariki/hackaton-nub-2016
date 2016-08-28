@@ -34,35 +34,129 @@ function select_calendar(day, mon, year){
 
 function print_money (eid, money) {
 	var mnstr = "";
-	
-
-
+	mnstr = String(money);
 	$("#"+eid).html("R$ "+mnstr);
 }
 
 function update_summary (day, mon, year) {
-	$.post("summary_data.php",
-		{base_day: day, base_mon: mon, base_year: year, time_int: 1},
-		function (data) {
-			var parsed = JSON.parse(data);
-			var status = parsed["status"];
-			if (status == "OK"){
-				$(".username").html(parsed["user"]);
-				var	health = String(parsed["health"]);
-				var bills  = String(parsed["bills"]);
-				var food   = String(parsed["food"]);
-				var fun    = String(parsed["fun"]);
-				while (health.length < 3) health = '0' + health;
-				print_money("health_sum", health);
-				print_money("bills_sum", bills);
-				print_money("food_sum", food);
-				print_money("fun_sum", fun);
-			} else {
-				$("#alert").html(
-					"Não foi possível acessar os dados. Desculpe pelo incômodo. Tente novamente mais tarde.");
-			}
+	var user = localStorage.getItem("session");
+	$(".username").html(user);
+	var udb = JSON.parse(localStorage.getItem("users"));
+
+	var history = udb[user]["transactions"];
+	var health = 0;
+	var bills  = 0;
+	var food   = 0;
+	var fun    = 0;
+
+	var now = Date();
+
+	for (var t in history["health"]) {
+		var name  = t["name"];
+		var value = t["value"];
+		var desc  = t["desc"];
+		var date  = t["date"];
+
+		if (now.getMonth() == date.getMonth() &&
+			now.getFullYear() == date.getFullYear() && value < 0) health += value;
+	}
+	for (var t in history["bills"]) {
+		var name  = t["name"];
+		var value = t["value"];
+		var desc  = t["desc"];
+		var date  = t["date"];
+		if (now.getMonth() == date.getMonth() &&
+			now.getFullYear() == date.getFullYear() && value < 0) bills += value;
+	}
+	for (var t in history["food"]) {
+		var name  = t["name"];
+		var value = t["value"];
+		var desc  = t["desc"];
+		var date  = t["date"];
+		if (now.getMonth() == date.getMonth() &&
+			now.getFullYear() == date.getFullYear() && value < 0) food += value;
+	}
+	for (var t in history["fun"]) {
+		var name  = t["name"];
+		var value = t["value"];
+		var desc  = t["desc"];
+		var date  = t["date"];
+		if (now.getMonth() == date.getMonth() &&
+			now.getFullYear() == date.getFullYear() && value < 0) fun += value;
+	}
+	var gast = 0;
+	var gain = 0;
+	for (var t in history){
+		for (var t in history[t]) {
+			var name  = t["name"];
+			var value = t["value"];
+			var desc  = t["desc"];
+			var date  = t["date"];
+			if (now.getDate() == date.getDate() &&
+				now.getMonth() == date.getMonth() &&
+				now.getFullYear() == date.getFullYear() && value < 0) gain += value;
 		}
-	);
+		for (var t in history[t]) {
+			var name  = t["name"];
+			var value = t["value"];
+			var desc  = t["desc"];
+			var date  = t["date"];
+			if (now.getDate() == date.getDate() &&
+				now.getMonth() == date.getMonth() &&
+				now.getFullYear() == date.getFullYear() && value > 0) gain += value;
+		}
+	}
+
+	var vec = [];
+	var not = [];
+
+	for (var i = 0; i < 10; i++){
+		var tmp = null;
+		for (var p in history)
+		{
+			for (var t in history[p]) {
+				var name  = t["name"];
+				var value = t["value"];
+				var desc  = t["desc"];
+				var date  = t["date"];
+				if (now.getDate() == date.getDate() &&
+					now.getMonth() == date.getMonth() &&
+					now.getFullYear() == date.getFullYear() && value < 0) gain += value;
+				if (!(name in not) && (tmp == null || tmp["date"] > date)){
+					t["class"] = p;
+					tmp = t;
+				}
+			}
+
+		}
+		if(tmp != null) {
+			vec.push(tmp);
+			not.push(tmp["name"]);
+		}
+	}
+
+	var final_string = "<tr style=\"background-color: purple; color: white\"><td>Nome</td><td>Categoria</td><td>Data</td><td>Valor</td></tr>";
+	for(var entry in vec){
+
+		var_node = "<tr><td>"+entry["name"]+
+			"</td><td>"+entry["class"]+
+			"</td><td>"+entry["date"].toLocaleString()+
+			"</td><td>"+entry["value"]+"</td></tr>";
+		final_string+=var_node;
+	}
+
+	$("#last_table").html(final_string);
+
+	$("#gasto").html("R$ "+String(gast));
+
+	$("#ganho").html("R$ "+String(gain));
+
+	$("#last_table")
+
+	print_money("health_sum", health);
+	print_money("bills_sum", bills);
+	print_money("food_sum", food);
+	print_money("fun_sum", fun);
 }
 
 $(document).ready( function () {
@@ -95,5 +189,9 @@ $(document).ready( function () {
 		}
 	});
 
-	//update_summary(day, mon, year);
+	$("#add+").click( function (){
+
+	});
+
+	update_summary(day, mon, year);
 });
