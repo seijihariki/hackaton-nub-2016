@@ -18,7 +18,7 @@
 	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
 	
 	if (!$connection) {
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 
 	$cids = mysqli_query($connection, "SELECT classes.id where classes.parent_class='1';");

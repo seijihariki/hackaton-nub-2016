@@ -7,7 +7,7 @@
 	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
 	
 	if (!$connection) {
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 
 	$user   = $_POST['username'];
@@ -21,7 +21,7 @@
 		$salt = $row["salt"];
 	} else {
 		mysql_close($connection);
-		exit("{status: wrong;}");
+		exit("{\"status\": \"wrong\"}");
 	}
 
 	$pass_hash = sha1($salt.$pass);
@@ -35,9 +35,9 @@
 		$row = $result->fetch_assoc();
 		$_SESSION["userid"] = $row["id"];
 		mysql_close($connection);
-		exit("{status: OK;}");
+		exit("{\"status\": \"OK\"}");
 	} else {
 		mysql_close($connection);
-		exit("{status: wrong;}");
+		exit("{\"status\": \"wrong\"}");
 	}
 ?>

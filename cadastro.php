@@ -17,7 +17,7 @@
 	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
 	
 	if (!$connection) {
-		die("{status: error;}");
+		die("{\"status\": \"error\"}");
 	}
 
 	$user   = $_POST['username'];
@@ -37,10 +37,10 @@
 		if ($result)
 		{
 		mysql_close($connection);
-		exit("{status: OK;}");
+		exit("{\"status\": \"OK\"}");
 		} else {
 			mysql_close($connection);
-			exit("{status: error;}");
+				die("{\"status\": \"error\"}");
 		}	
 	}
 
