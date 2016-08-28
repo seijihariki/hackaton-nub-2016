@@ -18,7 +18,7 @@
 	$connection = mysqli_connect($server, $dbuser, $dbpass, $database);
 	
 	if (!$connection) {
-		die("{\"status\": \"error\"}");
+		die("{\"status\": \"error1\"}");
 	}
 
 	$user   = $_POST['username'];
@@ -41,7 +41,7 @@
 		exit("{\"status\": \"OK\"}");
 		} else {
 			mysql_close($connection);
-				die("{\"status\": \"error\"}");
+				die("{\"status\": \"error2\"}");
 		}	
 	}
 

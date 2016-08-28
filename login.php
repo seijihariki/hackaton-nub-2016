@@ -14,22 +14,22 @@
 	$user   = $_POST['username'];
 	$pass 	= $_POST["password"];
 
-	$result = mysqli_query($connection, "SELECT salt FROM users WHERE user=".$user);
+	$result = mysqli_query($connection, "SELECT salt FROM users WHERE user=\"".$user."\"");
 	$salt = "";
-	if (mysqli_num_rows($result) == 1)
+	if (mysqli_num_rows($result) > 0)
 	{
 		$row = $result->fetch_assoc();
 		$salt = $row["salt"];
 	} else {
 		mysql_close($connection);
-		exit("{\"status\": \"wrong\"}");
+		exit("{\"status\": \"wrong1\"}");
 	}
 
 	$pass_hash = sha1($salt.$pass);
 
-	$result = mysqli_query($connection, "SELECT * FROM users WHERE user=".$user." AND pass=".$pass_hash);
+	$result = mysqli_query($connection, "SELECT * FROM users WHERE user=\"".$user."\" AND pass=\"".$pass_hash."\"");
 
-	if (mysqli_num_rows($result) == 1)
+	if (mysqli_num_rows($result) > 0)
 	{
 		session_start();
 		$_SESSION["user"] = $user;
