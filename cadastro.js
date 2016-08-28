@@ -7,10 +7,12 @@ $(document).ready(function (){
 		if ( user == '' || pass == ''|| repass == ''){
 			$("#user").attr("class", "wrong_input w3-input w3-border");
 			$("#pass").attr("class", "wrong_input w3-input w3-border");
+			$("#repass").attr("class", "wrong_input w3-input w3-border");
 			$("#alert").html("Não deixe campos em branco.");
 		} else if(pass != repass){
 			$("#user").attr("class", "wrong_input w3-input w3-border");
 			$("#pass").attr("class", "wrong_input w3-input w3-border");
+			$("#repass").attr("class", "wrong_input w3-input w3-border");
 			$("#alert").html("As senhas devem ser iguais.");
 		} else {
 			$.post("cadastro.php",{username: user, password: pass},
