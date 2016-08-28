@@ -34,7 +34,6 @@
 	} else {
 		$salt = generateRandomString();
 		$pass_hash = sha1($salt.$pass);
-		echo "INSERT INTO users (user,password,salt) VALUES (\"".$user."\",\"".$pass_hash."\",\"".$salt."\")";
 		$result = mysqli_query($connection, "INSERT INTO users (user,password,salt) VALUES (\"".$user."\",\"".$pass_hash."\",\"".$salt."\")");
 		if ($result)
 		{
