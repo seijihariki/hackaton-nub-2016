@@ -30,7 +30,7 @@
 	if (mysqli_num_rows($result) == 1)
 	{
 		mysql_close($connection);
-		exit("{status: already;}");
+		exit("{\"status\": \"already\"}");
 	} else {
 		$salt = generateRandomString();
 		$pass_hash = sha1($salt.$pass);
