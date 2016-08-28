@@ -105,9 +105,48 @@ function update_summary (day, mon, year) {
 				now.getMonth() == date.getMonth() &&
 				now.getFullYear() == date.getFullYear() && value > 0) gain += value;
 		}
-
 	}
-	
+
+	var vec = [];
+	var not = [];
+
+	for (var i = 0; i < 10; i++){
+		var tmp = null;
+		for (var p in history)
+		{
+			for (var t in history[p]) {
+				var name  = t["name"];
+				var value = t["value"];
+				var desc  = t["desc"];
+				var date  = t["date"];
+				if (now.getDate() == date.getDate() &&
+					now.getMonth() == date.getMonth() &&
+					now.getFullYear() == date.getFullYear() && value < 0) gain += value;
+				if (!(name in not) && (tmp == null || tmp["date"] > date)){
+					t["class"] = p;
+					tmp = t;
+				}
+			}
+
+		}
+		if(tmp != null) {
+			vec.push(tmp);
+			not.push(tmp["name"]);
+		}
+	}
+
+	var final_string = "<tr style=\"background-color: purple; color: white\"><td>Nome</td><td>Categoria</td><td>Data</td><td>Valor</td></tr>";
+	for(var entry in vec){
+
+		var_node = "<tr><td>"+entry["name"]+
+			"</td><td>"+entry["class"]+
+			"</td><td>"+entry["date"].toLocaleString()+
+			"</td><td>"+entry["value"]+"</td></tr>";
+		final_string+=var_node;
+	}
+
+	$("#last_table").html(final_string);
+
 	$("#gasto").html("R$ "+String(gast));
 
 	$("#ganho").html("R$ "+String(gain));
