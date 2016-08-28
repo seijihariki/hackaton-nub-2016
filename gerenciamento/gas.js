@@ -6,8 +6,6 @@ function update ()
 
 	var history = udb[user]["transactions"];
 
-	var totals = {};
-
 	var now = (new Date()).getTime();
 
 	var vec = [];
@@ -19,9 +17,10 @@ function update ()
 		{
 			var name  = history[t]["name"];
 			var value = history[t]["value"];
+			var g = history[t]["g"];
 			var desc  = history[t]["desc"];
-			var date  = parseInt(history[t]["date"]);
-			if (not.indexOf(name) && (tmp == null || tmp["date"] < date) && value < 0) tmp = history[t];
+			var date  = new Date(parseInt(history[t]["date"]));
+			if (not.indexOf(name) < 0 && (tmp == null || tmp["date"] < date) && g) tmp = history[t];
 
 		}
 		if(tmp != null) {
@@ -29,12 +28,11 @@ function update ()
 			not.push(tmp["name"]);
 		}
 	}
-
 	var final_string = "<tr style=\"background-color: blue; color: white\"><td>Nome</td><td>Categoria</td><td>Data</td><td>Valor</td></tr>";
 
 	for(var t = 0; t < vec.length; t++){
 
-		var_node = "<tr><td>"+vec[t]["name"]+
+		var var_node = "<tr><td>"+vec[t]["name"]+
 			"</td><td>"+vec[t]["class"]+
 			"</td><td>"+(new Date(vec[t]["date"])).toLocaleString()+
 			"</td><td>R$ "+vec[t]["value"]+"</td></tr>";
@@ -47,9 +45,8 @@ function update ()
 $(document).ready( function () {
 	$("#add").click( function () {
 		var user = localStorage.getItem("session");
-		$(".username").html(user);
 		var udb = JSON.parse(localStorage.getItem("users"));
-		udb[user]["transactions"].push({name: $("#name").val(), value: -parseFloat(($("#value").val()).replace(",",".")), class: $("#class"), date: (new Date()).getTime(), desc: null});
+		udb[user]["transactions"].push({g: true, name: $("#name").val(), value: parseFloat(($("#value").val()).replace(",",".").replace("-","")), class: $("#class").val(), date: (new Date()).getTime(), desc: null});
 		localStorage.setItem("users", JSON.stringify(udb));
 		update();
 	});

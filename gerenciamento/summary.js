@@ -54,6 +54,7 @@ function update_summary (day, mon, year) {
 		for (var t = 0; t < history.length; t++) {
 			var name  = history[t]["name"];
 			var value = history[t]["value"];
+			var g = history[t]["g"];
 			var clas  = history[t]["class"];
 			var desc  = history[t]["desc"];
 			var date  = new Date(parseInt(history[t]["date"]));
@@ -62,7 +63,7 @@ function update_summary (day, mon, year) {
 			console.log(now.toString());
 
 			if (now.getMonth() == date.getMonth() &&
-				now.getFullYear() == date.getFullYear() && value < 0) totals[udb[user]["classes"][k]] += value;
+				now.getFullYear() == date.getFullYear() && g) totals[udb[user]["classes"][k]] += value;
 		}
 	}
 
@@ -78,12 +79,13 @@ function update_summary (day, mon, year) {
 	for (var t = 0; t < history.length; t++){
 		var name  = history[t]["name"];
 		var value = history[t]["value"];
+		var g = history[t]["g"];
 		var desc  = history[t]["desc"];
 		var date  = new Date(parseInt(history[t]["date"]));
 		if (now.getDate() == date.getDate() &&
 			now.getMonth() == date.getMonth() &&
 			now.getFullYear() == date.getFullYear()){
-			if (value < 0) spent += value;
+			if (g) spent += value;
 			else gain += value;
 		} 
 	}
@@ -100,7 +102,7 @@ function update_summary (day, mon, year) {
 			var value = history[t]["value"];
 			var desc  = history[t]["desc"];
 			var date  = new Date(parseInt(history[t]["date"]));
-			if (not.indexOf(name) && (tmp == null || tmp["date"] < date)) tmp = history[t];
+			if (not.indexOf(name) < 0 && (tmp == null || tmp["date"] < date)) tmp = history[t];
 
 		}
 		if(tmp != null) {
@@ -168,7 +170,7 @@ $(document).ready( function () {
 		var user = localStorage.getItem("session");
 		$(".username").html(user);
 		var udb = JSON.parse(localStorage.getItem("users"));
-		udb[user]["transactions"].push({name: $("#namest").val(), value: -parseFloat(($("#valuest").val()).replace(",",".")), class: $("#classst"), date: (new Date()).getTime(), desc: null});
+		udb[user]["transactions"].push({g: true, name: $("#namest").val(), value: parseFloat(($("#value").val()).replace(",",".").replace("-","")), class: $("#classst").val(), date: (new Date()).getTime(), desc: null});
 		localStorage.setItem("users", JSON.stringify(udb));
 		update_summary(day, mon, year);
 	});
@@ -177,7 +179,7 @@ $(document).ready( function () {
 		var user = localStorage.getItem("session");
 		$(".username").html(user);
 		var udb = JSON.parse(localStorage.getItem("users"));
-		udb[user]["transactions"].push({name: $("#namegn").val(), value: parseFloat(($("#valuegn").val()).replace(",",".")), class: $("#classgn"), date: (new Date()).getTime(), desc: null});
+		udb[user]["transactions"].push({g: false, name: $("#namegn").val(), value: parseFloat(($("#valuegn").val()).replace(",",".").replace("-","")), class: $("#classgn").val(), date: (new Date()).getTime(), desc: null});
 		localStorage.setItem("users", JSON.stringify(udb));
 		update_summary(day, mon, year);
 	});

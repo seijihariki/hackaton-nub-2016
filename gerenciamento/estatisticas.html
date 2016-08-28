@@ -9,16 +9,12 @@
       // Load Charts and the corechart package.
       google.charts.load('current', {'packages':['corechart']});
 
-      // Draw the pie chart for Sarah's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawSarahChart);
 
-      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
       google.charts.setOnLoadCallback(drawAnthonyChart);
 
-      // Callback that draws the pie chart for Sarah's pizza.
       function drawSarahChart() {
 
-        // Create the data table for Sarah's pizza.
         var data = new google.visualization.DataTable();
         data.addColumn('string', '');
         data.addColumn('number', '');
@@ -29,19 +25,15 @@
           ['Categoria 04', 2],
         ]);
 
-        // Set options for Sarah's pie chart.
         var options = {title:'Porcentagem por Categoria',
                        width:450,
                        height:300};
 
-        // Instantiate and draw the chart for Sarah's pizza.
         var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
         chart.draw(data, options);
       }
 
-        // Callback that draws the pie chart for Anthony's pizza.
         function drawAnthonyChart() {
-        // Create the data table for Anthony's pizza.
         var data = new google.visualization.DataTable();
         data.addColumn('string', '');
         data.addColumn('number', 'R$');
@@ -52,12 +44,10 @@
           ['Categoria 04', 7],
         ]);
 
-        // Set options for Anthony's pie chart.
         var options = {title:'Valor por Categoria',
                        width:450,
                        height:300};
 
-        // Instantiate and draw the chart for Anthony's pizza.
         var chart = new google.visualization.BarChart(document.getElementById('Anthony_chart_div'));
         chart.draw(data, options);
       }
