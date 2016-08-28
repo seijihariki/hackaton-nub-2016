@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
-<title>Metas</title>
 <meta charset="utf8">
+<title>Metas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <style>
 * {box-sizing:border-box;}
@@ -54,7 +57,7 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
 <div class="w3-container">
   <div class="w3-container"style="background-color: #9900cc; color: white">
   <h1 class="w3-jumbo"><b>Metas</b></h1><br>
-  <a href=""><button class="w3-btn" style="float: right; margin-bottom: 10px"><b>Adicionar Meta</b>  <i class="fa fa-plus"></i></button>
+  <button type="button" class="w3-btn" data-toggle="modal" data-target="#myModal" style="float: right; margin-bottom: 10px"><b>Adicionar Categoria</b>  <i class="fa fa-plus"></i></button>
 
   </div>
   <hr>
@@ -154,6 +157,30 @@ function w3_close() {
     overlayBg.style.display = "none";
 }
 </script>
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: black">
+        <button type="button" class="close" data-dismiss="modal"style="color: #ffffff">&times;</button>
+        <h4 class="modal-title" style="color: white"><b>Adicionar Meta</b></h4>
+      </div>
+      <div class="modal-body">
+          <form method="post" id="new_gasto" action="/gastos">
+    <p><label for="nome">Nome da Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" name="nome" id="nome" /></p>
+    <p><label for="descricao">Descrição: </label> &nbsp; <input name="descricao" type="text" id="descricao" size="35"></p>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
 
 </div>
 </body>
