@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="summary.js"></script>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript">
     google.charts.load('current', {packages: ['corechart', 'bar']});
@@ -157,16 +159,17 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
     </div>
   </div>
   <hr>
+
   <div class="w3-container">
-    <h5>Menu</h5>
+    <h5><b>Menu</b></h5>
   </div>
   <a href="#" class="w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-  <a href="index.html" class="w3-padding w3-blue"><i class="fa fa-eye fa-fw"></i>  Visão geral</a>
-  <a href="categorias.html" class="w3-padding"><i class="fa fa-book fa-fw"></i>  Categorias</a>
-  <a href="gan.html" class="w3-padding"><i class="fa fa-money fa-fw"></i>  Ganhos</a>
-  <a href="gas.html" class="w3-padding"><i class="fa fa-dollar fa-fw"></i>  Gastos</a>
-  <a href="metas.html" class="w3-padding"><i class="fa fa-edit fa-fw"></i>  Metas</a>
-  <a href="Estatisticos.html" class="w3-padding"><i class="fa fa-bar-chart fa-fw"></i>  Dados Estatísticos</a>
+  <a href="index.html" class="w3-padding w3-blue" style="color: #000000"><i class="fa fa-eye fa-fw" style="color: #000000  "></i><b>Visão geral</b></a>
+  <a href="categorias.html" class="w3-padding" style="color: #000000"><i class="fa fa-book fa-fw"></i><b>Categorias</b></a>
+  <a href="gan.html" class="w3-padding" style="color: #000000"><i class="fa fa-money fa-fw" style="color: #000000"></i><b>Ganhos</b></a>
+  <a href="gas.html" class="w3-padding" style="color: #000000"><i class="fa fa-dollar fa-fw" style="color: #000000"></i><b>Gastos</b></a>
+  <a href="metas.html" class="w3-padding" style="color: #000000"><i class="fa fa-edit fa-fw" style="color: #000000"></i><b>Metas</b></a>
+  <a href="estatisticas.html" class="w3-padding" style="color: #000000"><i class="fa fa-bar-chart fa-fw" style="color: #000000"></i><b>Dados Estatísticos</b></a>
 </nav>
 
 
@@ -321,17 +324,10 @@ html,body,h1,h2,h3,h4,h5 {font-family: "Arial", sans-serif}
 
   <div class="w3-container">
     <h5>Últimas 10 entradas</h5>
-<<<<<<< HEAD
-      <a href=""><button class="w3-btn" style="background-color: #cc0000;float: right; margin-bottom: 10px"><b>Adicionar Gasto</b>  <i class="fa fa-plus"></i></button></a>
-      
 
-      <a href=""><button class="w3-btn" style="background-color: blue;float: right;margin-bottom: 10px"><b>Adicionar Ganho</b>  <i class="fa fa-plus"></i></button></a>
-  <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
-=======
-      <button id="add+" class="w3-btn" style="background-color: #cc0000;float: right; margin-bottom: 10px"><b>Adicionar Gasto</b>  <i class="fa fa-plus"></i></button>
-      <button id="add-" class="w3-btn" style="background-color: #009900;float: right;margin-bottom: 10px"><b>Adicionar Ganho</b>  <i class="fa fa-plus"></i></button>
+  <button type="button" class="w3-btn" data-toggle="modal" data-target="#myGasto" style="background-color: #cc0000; float: right; margin-bottom: 10px"><b>Adicionar Gasto</b> <i class="fa fa-plus"></i></button>
+  <button type="button" class="w3-btn" data-toggle="modal" data-target="#myGanho" style="background-color: #0000cc; float: right;margin-bottom: 10px"><b>Adicionar Ganho</b> <i class="fa fa-plus"></i></button>
   <table id="last_table" class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
->>>>>>> a98a79ab90844de8f18d81890ddc3a180a982fea
   <tr style="background-color: purple; color: white">
     <td><b>Nome</b></td>
     <td><b>Categoria</b></td>
@@ -373,6 +369,57 @@ function w3_close() {
 }
 </script>
 
+<div id="myGasto" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: black">
+        <button type="button" class="close" data-dismiss="modal"style="color: #ffffff">&times;</button>
+        <h4 class="modal-title" style="color: white"><b>Adicionar Gasto</b></h4>
+      </div>
+      <div class="modal-body">
+          <form method="post" id="new_gasto" action="/gastos">
+    <p><label for="nome">Nome do Gasto: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" name="nome" id="nome" /></p>
+    <p><label for="nome">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="36" name="nome" id="nome" /></p>
+    <p><label for="nome">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="32.5" name="nome" id="nome" /></p>
+    <p><label for="nome">Data: </label> &nbsp; <input style="margin-right: 20px" type="text" size="37" name="nome" id="nome" /></p>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="myGanho" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: black">
+        <button type="button" class="close" data-dismiss="modal"style="color: #ffffff">&times;</button>
+        <h4 class="modal-title" style="color: white"><b>Adicionar Ganho</b></h4>
+      </div>
+      <div class="modal-body">
+          <form method="post" id="new_gasto" action="/gastos">
+    <p><label for="nome">Nome do Ganho: </label> &nbsp; <input style="margin-right: 20px" type="text" size="27.5" name="nome" id="nome" /></p>
+    <p><label for="nome">Valor: </label> &nbsp; <input style="margin-right: 20px" type="text" size="37" name="nome" id="nome" /></p>
+    <p><label for="nome">Categoria: </label> &nbsp; <input style="margin-right: 20px" type="text" size="33" name="nome" id="nome" /></p>
+    <p><label for="nome">Data: </label> &nbsp; <input style="margin-right: 20px" type="text" size="38" name="nome" id="nome" /></p>
+  </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" style="float: left">Adicionar</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
 </body>
 </html>
-
