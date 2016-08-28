@@ -2,69 +2,79 @@
 
 <head>
 <meta charset="utf8">
+<!--Load the AJAX API-->
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
 
-<script src="http://canvasjs.com/assets/script/canvasjs.min.js"></script>
-<script type="text/javascript">
+      // Load Charts and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
 
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer", {
-    theme: "theme2",//theme1
-    title:{
-      text: "Basic Column Chart - CanvasJS"              
-    },
-    animationEnabled: false,   // change to true
-    data: [              
-    {
-      // Change type to "bar", "area", "spline", "pie",etc.
-      type: "column",
-      dataPoints: [
-        { label: "apple",  y: 10  },
-        { label: "orange", y: 15  },
-        { label: "banana", y: 25  },
-        { label: "mango",  y: 30  },
-        { label: "grape",  y: 28  }
-      ]
-    }
-    ]
-  });
-  chart.render();
-}
+      // Draw the pie chart for Sarah's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawSarahChart);
+
+      // Draw the pie chart for the Anthony's pizza when Charts is loaded.
+      google.charts.setOnLoadCallback(drawAnthonyChart);
+
+      // Callback that draws the pie chart for Sarah's pizza.
+      function drawSarahChart() {
+
+        // Create the data table for Sarah's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '');
+        data.addColumn('number', '');
+        data.addRows([
+          ['Categoria 01', 1],
+          ['Categoria 02', 1],
+          ['Categoria 03', 2],
+          ['Categoria 04', 2],
+        ]);
+
+        // Set options for Sarah's pie chart.
+        var options = {title:'Porcentagem por Categoria',
+                       width:450,
+                       height:300};
+
+        // Instantiate and draw the chart for Sarah's pizza.
+        var chart = new google.visualization.PieChart(document.getElementById('Sarah_chart_div'));
+        chart.draw(data, options);
+      }
+
+        // Callback that draws the pie chart for Anthony's pizza.
+        function drawAnthonyChart() {
+        // Create the data table for Anthony's pizza.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', '');
+        data.addColumn('number', 'R$');
+        data.addRows([
+          ['Categoria 01', 2],
+          ['Categoria 02', 2],
+          ['Categoria 03', 2],
+          ['Categoria 04', 7],
+        ]);
+
+        // Set options for Anthony's pie chart.
+        var options = {title:'Valor por Categoria',
+                       width:450,
+                       height:300};
+
+        // Instantiate and draw the chart for Anthony's pizza.
+        var chart = new google.visualization.BarChart(document.getElementById('Anthony_chart_div'));
+        chart.draw(data, options);
+      }
 </script>
 
+
+
 </head>
+
 <title>Estatisticas</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-
-<script type="text/javascript">
-window.onload = function () {
-  var chart = new CanvasJS.Chart("chartContainer",
-  {
-    title:{
-      text: "Pie Chart"
-    },
-    data: [
-    {
-      type: "pie",
-      dataPoints: [
-        { y: 4181563},
-        { y: 2175498},
-        { y: 3125844},
-        { y: 1176121},
-        { y: 1727161},
-        { y: 4303364},
-        { y: 1717786}
-      ]
-    }
-    ]
-  });
-  chart.render();
-}
-  </script>
-  <script src="../../canvasjs.min.js"></script>
-  <title>CanvasJS Example</title>
 
 <style>
   html,body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
@@ -79,31 +89,53 @@ window.onload = function () {
 <nav class="w3-sidenav w3-collapse w3-white w3-animate-left" style="z-index:3;width:300px;" id="mySidenav"><br>
   <div class="w3-container w3-row">
     <div class="w3-col s8">
+<<<<<<< HEAD
       <span>Bem-vindo, <strong><div class="username">Mike</div></strong></span><br>
+=======
+      <span>Bem-vindo, <strong> </strong></span><br>
+>>>>>>> 98a8227f2ca1091b2ef4591062504611aee40e94
     </div>
   </div>
   <hr>
   <div class="w3-container">
-    <h5>Menu</h5>
+    <h5><b>Menu</b></h5>
   </div>
   <a href="#" class="w3-padding-16 w3-hide-large w3-dark-grey w3-hover-black" onclick="w3_close()" title="close menu"><i class="fa fa-remove fa-fw"></i>  Close Menu</a>
-  <a href="index.html" class="w3-padding"><i class="fa fa-eye fa-fw"></i>  Visão geral</a>
-  <a href="categorias.html" class="w3-padding"><i class="fa fa-book fa-fw"></i>  Categorias</a>
-  <a href="gan.html" class="w3-padding"><i class="fa fa-money fa-fw"></i>  Ganhos</a>
-  <a href="gas.html" class="w3-padding"><i class="fa fa-dollar fa-fw"></i>  Gastos</a>
-  <a href="metas.html" class="w3-padding"><i class="fa fa-edit fa-fw"></i>  Metas</a>
-  <a href="estatisticas.html" class="w3-padding w3-blue"><i class="fa fa-bar-chart fa-fw"></i>  Dados Estatísticos</a>
+  <a href="index.html" class="w3-padding" style="color: #000000"><i class="fa fa-eye fa-fw" style="color: #000000  "></i><b>Visão geral</b></a>
+  <a href="categorias.html" class="w3-padding" style="color: #000000"><i class="fa fa-book fa-fw"></i><b>Categorias</b></a>
+  <a href="gan.html" class="w3-padding" style="color: #000000"><i class="fa fa-money fa-fw" style="color: #000000"></i><b>Ganhos</b></a>
+  <a href="gas.html" class="w3-padding" style="color: #000000"><i class="fa fa-dollar fa-fw" style="color: #000000"></i><b>Gastos</b></a>
+  <a href="metas.html" class="w3-padding" style="color: #000000"><i class="fa fa-edit fa-fw" style="color: #000000"></i><b>Metas</b></a>
+  <a href="estatisticas.html" class="w3-padding w3-blue" style="color: #000000"><i class="fa fa-bar-chart fa-fw" style="color: #000000"></i><b>Dados Estatísticos</b></a>
 </nav>
-
 <!-- Overlay effect when opening sidenav on small screens -->
 <div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
 
 <!-- !PAGE CONTENT! -->
-<div class="w3-main" style="margin-left:300px;margin-top:50px;">
+<div class="w3-main" style="margin-left:300px;margin-top:43px;">
 
-<!-- !<div id="chartContainer" style="height: 300px; width: 100%;"></div>! -->
-    
-<div id="chartContainer" style="height: 400px; width: 100%;"></div>!
+  <!-- Header -->
+  <header class="w3-container" style="padding-top:22px">
+    <h5></h5>
+  </header>
+
+
+<div class="w3-container">
+  <div class="w3-container"style="background-color: #009900; color: white">
+  <h1 class="w3-jumbo"><b>Estatísticas</b></h1><br>
+  
+
+  </div>
+  <hr>
+ <!--Table and divs that hold the pie charts-->
+    <table class="columns">
+      <tr>
+        <td><div id="Sarah_chart_div" style="border: 1px solid #ccc"></div></td>
+        <td><div id="Anthony_chart_div" style="border: 1px solid #ccc"></div></td>
+      </tr>
+    </table>
+
+
 
 <script>
 // Get the Sidenav
