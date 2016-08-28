@@ -13,7 +13,7 @@ $(document).ready(function (){
 			$("#pass").attr("class", "wrong_input w3-input w3-border");
 			$("#alert").html("As senhas devem ser iguais.");
 		} else {
-			$.post("cadastro.php",{username: user, password: pass,},
+			$.post("cadastro.php",{username: user, password: pass},
 				function (data) {
 					var parsed = JSON.parse(data);
 					var status = parsed["status"];
