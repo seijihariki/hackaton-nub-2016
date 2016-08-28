@@ -1,4 +1,5 @@
 <?php
+	error_reporting(E_ERROR | E_PARSE);
 	$server = "mysql.hostinger.com.br";
 	$dbuser = "u658685063_adm";
 	$dbpass = "senhadb";
