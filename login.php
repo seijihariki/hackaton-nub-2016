@@ -22,7 +22,7 @@
 		$salt = $row["salt"];
 	} else {
 		mysql_close($connection);
-		exit("{\"status\": \"wrong\"}");
+		exit("{\"status\": \"wrong1\"}");
 	}
 
 	$pass_hash = sha1($salt.$pass);
