@@ -18,7 +18,7 @@ $(document).ready(function (){
 			var userobj = JSON.parse(localStorage.getItem("users"));
 			if(userobj == null) userobj = JSON.parse("{}");
 			if(user in userobj) $("#alert").html("Usuário já existe.");
-			else userobj[String(user)] = {password: pass, transactions: {health: [], bills: [], food: [], fun: []}};
+			else userobj[String(user)] = {password: pass, transactions: [], classes: {health: "health", bills: "bills", food: "food", fun: "fun"}};
 			localStorage.setItem("users", JSON.stringify(userobj));
 			document.location.href = "login.html";
 		}

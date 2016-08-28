@@ -44,89 +44,63 @@ function update_summary (day, mon, year) {
 	var udb = JSON.parse(localStorage.getItem("users"));
 
 	var history = udb[user]["transactions"];
-	var health = 0;
-	var bills  = 0;
-	var food   = 0;
-	var fun    = 0;
 
-	var now = Date();
+	var totals = {};
 
-	for (var t in history["health"]) {
-		var name  = t["name"];
-		var value = t["value"];
-		var desc  = t["desc"];
-		var date  = t["date"];
+	var now = new Date();
 
-		if (now.getMonth() == date.getMonth() &&
-			now.getFullYear() == date.getFullYear() && value < 0) health += value;
+	for (var k in udb[user]["classes"]){
+		totals[udb[user]["classes"][k]] = 0;
+		for (var t = 0; t < history.length; t++) {
+			var name  = history[t]["name"];
+			var value = history[t]["value"];
+			var clas  = history[t]["class"];
+			var desc  = history[t]["desc"];
+			var date  = new Date(parseInt(history[t]["date"]));
+
+			console.log(date.toString());
+			console.log(now.toString());
+
+			if (now.getMonth() == date.getMonth() &&
+				now.getFullYear() == date.getFullYear() && value < 0) totals[udb[user]["classes"][k]] += value;
+		}
 	}
-	for (var t in history["bills"]) {
-		var name  = t["name"];
-		var value = t["value"];
-		var desc  = t["desc"];
-		var date  = t["date"];
-		if (now.getMonth() == date.getMonth() &&
-			now.getFullYear() == date.getFullYear() && value < 0) bills += value;
+
+	for (var k in udb[user]["classes"]){
+		if(!(udb[user]["classes"][k] in ["health","bills","food","fun"])){
+			totals[udb[user]["classes"][udb[user]["classes"][k]]] += totals[udb[user]["classes"][k]];
+		}
 	}
-	for (var t in history["food"]) {
-		var name  = t["name"];
-		var value = t["value"];
-		var desc  = t["desc"];
-		var date  = t["date"];
-		if (now.getMonth() == date.getMonth() &&
-			now.getFullYear() == date.getFullYear() && value < 0) food += value;
-	}
-	for (var t in history["fun"]) {
-		var name  = t["name"];
-		var value = t["value"];
-		var desc  = t["desc"];
-		var date  = t["date"];
-		if (now.getMonth() == date.getMonth() &&
-			now.getFullYear() == date.getFullYear() && value < 0) fun += value;
-	}
-	var gast = 0;
+
 	var gain = 0;
-	for (var t in history){
-		for (var t in history[t]) {
-			var name  = t["name"];
-			var value = t["value"];
-			var desc  = t["desc"];
-			var date  = t["date"];
-			if (now.getDate() == date.getDate() &&
-				now.getMonth() == date.getMonth() &&
-				now.getFullYear() == date.getFullYear() && value < 0) gain += value;
-		}
-		for (var t in history[t]) {
-			var name  = t["name"];
-			var value = t["value"];
-			var desc  = t["desc"];
-			var date  = t["date"];
-			if (now.getDate() == date.getDate() &&
-				now.getMonth() == date.getMonth() &&
-				now.getFullYear() == date.getFullYear() && value > 0) gain += value;
-		}
+	var spent = 0;
+
+	for (var t = 0; t < history.length; t++){
+		var name  = history[t]["name"];
+		var value = history[t]["value"];
+		var desc  = history[t]["desc"];
+		var date  = new Date(parseInt(history[t]["date"]));
+		if (now.getDate() == date.getDate() &&
+			now.getMonth() == date.getMonth() &&
+			now.getFullYear() == date.getFullYear()){
+			if (value < 0) spent += value;
+			else gain += value;
+		} 
 	}
+
 
 	var vec = [];
 	var not = [];
 
 	for (var i = 0; i < 10; i++){
 		var tmp = null;
-		for (var p in history)
+		for (var t = 0; t < history.length; t++)
 		{
-			for (var t in history[p]) {
-				var name  = t["name"];
-				var value = t["value"];
-				var desc  = t["desc"];
-				var date  = t["date"];
-				if (now.getDate() == date.getDate() &&
-					now.getMonth() == date.getMonth() &&
-					now.getFullYear() == date.getFullYear() && value < 0) gain += value;
-				if (!(name in not) && (tmp == null || tmp["date"] > date)){
-					t["class"] = p;
-					tmp = t;
-				}
-			}
+			var name  = history[t]["name"];
+			var value = history[t]["value"];
+			var desc  = history[t]["desc"];
+			var date  = new Date(parseInt(history[t]["date"]));
+			if (not.indexOf(name) && (tmp == null || tmp["date"] < date)) tmp = history[t];
 
 		}
 		if(tmp != null) {
@@ -136,27 +110,27 @@ function update_summary (day, mon, year) {
 	}
 
 	var final_string = "<tr style=\"background-color: purple; color: white\"><td>Nome</td><td>Categoria</td><td>Data</td><td>Valor</td></tr>";
-	for(var entry in vec){
 
-		var_node = "<tr><td>"+entry["name"]+
-			"</td><td>"+entry["class"]+
-			"</td><td>"+entry["date"].toLocaleString()+
-			"</td><td>"+entry["value"]+"</td></tr>";
+	for(var t = 0; t < vec.length; t++){
+
+		var_node = "<tr><td>"+vec[t]["name"]+
+			"</td><td>"+vec[t]["class"]+
+			"</td><td>"+(new Date(vec[t]["date"])).toLocaleString()+
+			"</td><td>"+vec[t]["value"]+"</td></tr>";
 		final_string+=var_node;
 	}
 
 	$("#last_table").html(final_string);
 
-	$("#gasto").html("R$ "+String(gast));
+
+	$("#gasto").html("R$ "+String(spent));
 
 	$("#ganho").html("R$ "+String(gain));
 
-	$("#last_table")
-
-	print_money("health_sum", health);
-	print_money("bills_sum", bills);
-	print_money("food_sum", food);
-	print_money("fun_sum", fun);
+	print_money("health_sum", totals["health"]);
+	print_money("bills_sum", totals["bills"]);
+	print_money("food_sum", totals["food"]);
+	print_money("fun_sum", totals["fun"]);
 }
 
 $(document).ready( function () {
@@ -186,6 +160,7 @@ $(document).ready( function () {
 	$("#calendar li").click( function (){
 		if ($(this).html() != ''){
 			select_calendar(parseInt($(this).html()), mon, year);
+			update_summary(day, mon, year);
 		}
 	});
 
