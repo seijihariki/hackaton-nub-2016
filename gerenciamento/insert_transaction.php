@@ -4,7 +4,7 @@
 	$dbpass = "senhadb";
 	$dbname = "u658685063_users";
 
-	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
+	$connection = mysqli_connect($server, $dbuser, $dbpass, $database);
 
 	if (!$connection)
 	{

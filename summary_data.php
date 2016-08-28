@@ -15,7 +15,7 @@
 	$fun;
 
 
-	$connection = mysql_connect($server, $dbuser, $dbpass, $database);
+	$connection = mysqli_connect($server, $dbuser, $dbpass, $database);
 	
 	if (!$connection) {
 		die("{\"status\": \"error\"}");
