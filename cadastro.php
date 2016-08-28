@@ -34,6 +34,14 @@
 		$salt = generateRandomString();
 		$pass_hash = sha1($salt.$pass);
 		$result = mysqli_query($connection, "INSERT INTO users (name,password,salt) VALUES (".$user.",".$pass_hash.",".$salt.");");
+		if ($result)
+		{
+		mysql_close($connection);
+		exit("{status: OK;}");
+		} else {
+			mysql_close($connection);
+			exit("{status: error;}");
+		}	
 	}
 
 
