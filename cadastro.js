@@ -15,12 +15,35 @@ $(document).ready(function (){
 			$("#repass").attr("class", "wrong_input w3-input w3-border");
 			$("#alert").html("As senhas devem ser iguais.");
 		} else {
-			var userobj = JSON.parse(localStorage.getItem("users"));
-			if(userobj == null) userobj = JSON.parse("{}");
-			if(user in userobj) $("#alert").html("Usuário já existe.");
-			else userobj[String(user)] = {password: pass, transactions: [], classes: {health: "health", bills: "bills", food: "food", fun: "fun"}};
-			localStorage.setItem("users", JSON.stringify(userobj));
-			document.location.href = "login.html";
+			$.post("cadastro.php",{username: user, password: pass},
+				function (data) {
+					var parsed = JSON.parse(data);
+					var status = parsed["status"];
+					if (status == "OK"){
+						$("#user").attr("class", "ok_input w3-input w3-border");
+						$("#pass").attr("class", "ok_input w3-input w3-border");
+						$("#repass").attr("class", "ok_input w3-input w3-border");
+						$("form")[0].reset();
+						$("#alert").html("Verificado. Redirecionando...");
+						window.location.href = "login.html";
+					} else if (status == "wrong"){
+						$("#user").attr("class", "wrong_input w3-input w3-border");
+						$("#pass").attr("class", "wrong_input w3-input w3-border");
+						$("#repass").attr("class", "wrong_input w3-input w3-border");
+						$("#alert").html("Usuário ou senha incorretos.");
+					} else if (status == "already"){
+						$("#user").attr("class", "wrong_input w3-input w3-border");
+						$("#pass").attr("class", "wrong_input w3-input w3-border");
+						$("#repass").attr("class", "wrong_input w3-input w3-border");
+						$("#alert").html("Usuário já existe.");
+					} else {
+						$("#user").attr("class", "ok_input w3-input w3-border");
+						$("#pass").attr("class", "ok_input w3-input w3-border");
+						$("#repass").attr("class", "ok_input w3-input w3-border");
+
+					}
+				}
+			);
 		}
 	});
 });

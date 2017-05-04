@@ -5,14 +5,18 @@
 	$dbpass = "senhadb";
 	$dbname = "u658685063_users";
 
-	$userid   = $_SESSION['userid'];
-	$user = $_SESSION['user'];
-	$day;
-	$time_int;
-	$total;
-	$bills;
-	$food;
-	$fun;
+	$userid 	= $_SESSION['userid'];
+	$user 		= $_SESSION['user'];
+	$b_day 		= $_POST['base_day'];
+	$b_mon      = $_POST['base_mon'];
+	$b_year		= $_POST['base_year'];
+	$t_int		= $_POST['time_int'];
+
+	$total      = "";
+	$health		= "";
+	$bills		= "";
+	$food		= "";
+	$fun 		= "";
 
 
 	$connection = mysqli_connect($server, $dbuser, $dbpass, $database);
@@ -21,8 +25,5 @@
 		die("{\"status\": \"error\"}");
 	}
 
-	$cids = mysqli_query($connection, "SELECT classes.id where classes.parent_class='1';");
-	$health = mysqli_query($connection, "SELECT transactions.value from transactions inner join classes on transaction.cid =".$cids.";"
-
-
+	$health_results = mysqli_query($connection, "SELECT transactions.value ");
 ?>
